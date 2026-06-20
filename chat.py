@@ -34,6 +34,7 @@ def chat(message: str, model: str = "gpt-4o-mini") -> str:
     response = client.chat.completions.create(
         model=model,
         messages=[
+            {"role": "system", "content": "You are a helpful assistant but you always answer the question in spanish."},
             {"role": "user", "content": message},
         ],
     )
