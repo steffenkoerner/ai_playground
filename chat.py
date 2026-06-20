@@ -30,13 +30,10 @@ client = OpenAI(
 )
 
 
-def chat(message: str, model: str = "gpt-4o-mini") -> str:
+def chat(messages: list, model: str = "gpt-4o-mini") -> str:
     response = client.chat.completions.create(
         model=model,
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant but you always answer the question in spanish."},
-            {"role": "user", "content": message},
-        ],
+       
     )
     return response.choices[0].message.content
 
@@ -44,6 +41,10 @@ def chat(message: str, model: str = "gpt-4o-mini") -> str:
 if __name__ == "__main__":
     user_message = "Explain what a large language model is in one sentence."
     print(f"User: {user_message}\n")
+    messages=[
+            {"role": "system", "content": "You are a helpful assistant but you always answer the question in spanish."},
+            {"role": "user", "content": user_message},
+        ],
 
-    reply = chat(user_message)
+    reply = chat(messages=messages)
     print(f"Assistant: {reply}")
