@@ -29,22 +29,28 @@ client = OpenAI(
     api_key=GITHUB_TOKEN,
 )
 
+class Assistant:
+    def __init__(self, name: str = "Assistant", system_prompt: str = "You are a helpful assistant."):
+        self.name = name
+        self.system_prompt = system_prompt
+        self.system_prompt = [{"role": "system", "content": self.system_prompt}]
 
-def chat(messages: list, model: str = "gpt-4o-mini") -> str:
-    response = client.chat.completions.create(
-        model=model,
-       
-    )
-    return response.choices[0].message.content
+
+    def chat(self, messages: list, model: str = "gpt-4o-mini") -> str:
+        response = client.chat.completions.create(
+            model=model,
+            messages= self.system_prompt + messages
+        )
+        return response.choices[0].message.content
 
 
 if __name__ == "__main__":
-    user_message = "Explain what a large language model is in one sentence."
+    user_message = "Hallo! Wie gehts."
     print(f"User: {user_message}\n")
-    messages=[
-            {"role": "system", "content": "You are a helpful assistant but you always answer the question in spanish."},
+    spanish_assistant = Assistant(name="Spanish Assistant", system_prompt="You are a helpful assistant that responds in Spanish.")
+    messages=[        
             {"role": "user", "content": user_message},
-        ],
+        ]
+    reply = spanish_assistant.chat(messages)
 
-    reply = chat(messages=messages)
     print(f"Assistant: {reply}")
