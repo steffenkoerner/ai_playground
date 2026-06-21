@@ -16,13 +16,17 @@ def classify_email():
     print(f"Sentiment:       {ticket.sentiment.value}")
     print(f"Suggested reply: {ticket.suggested_reply}")
 
-    
-    
-
-if __name__ == "__main__":
-    #classify_email()
+def similarity_search():
     similarity_search = SimilaritySearch(documents=documents)
     results = similarity_search.similarity_search("Reset password", top_k=3)
     for score, doc in results:
         print(f"{score:.4f}  {doc}")
+
+    
+    
+
+if __name__ == "__main__":
+    classify_email()
+    similarity_search()
+
 
