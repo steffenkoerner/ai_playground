@@ -1,7 +1,7 @@
 from services.email_services import EmailServices
+from search.similarity_search import SimilaritySearch
 
-
-if __name__ == "__main__":
+def classify_email():
     email_services = EmailServices()
 
     email_content = "My order #12345 arrived damaged and I want a replacement as soon as possible!"
@@ -13,4 +13,12 @@ if __name__ == "__main__":
     print(f"Priority:        {ticket.priority.value}")
     print(f"Sentiment:       {ticket.sentiment.value}")
     print(f"Suggested reply: {ticket.suggested_reply}")
+
+    
+    
+
+if __name__ == "__main__":
+    #classify_email()
+    similarity_search = SimilaritySearch()
+    similarity_search.similarity_search("Reset password")
 
