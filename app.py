@@ -1,5 +1,7 @@
 from services.email_services import EmailServices
 from search.similarity_search import SimilaritySearch
+from examples.semantic_search import documents
+
 
 def classify_email():
     email_services = EmailServices()
@@ -19,6 +21,8 @@ def classify_email():
 
 if __name__ == "__main__":
     #classify_email()
-    similarity_search = SimilaritySearch()
-    similarity_search.similarity_search("Reset password")
+    similarity_search = SimilaritySearch(documents=documents)
+    results = similarity_search.similarity_search("Reset password", top_k=3)
+    for score, doc in results:
+        print(f"{score:.4f}  {doc}")
 

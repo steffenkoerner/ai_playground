@@ -1,15 +1,14 @@
-from openai import OpenAI
 from llm.client import LLMClient
+from config import EMBEDDING_MODEL
 
 
 class EmbeddingServices:
-    def __init__(self):
-        self.client = LLMClient()
+    def __init__(self, llm_client: LLMClient | None = None):
+        self.client = (llm_client or LLMClient()).client
 
     def create_embedding(self, text: str) -> list[float]:
-        response = self.client.client.embeddings.create(
+        response = self.client.embeddings.create(
             input=text,
-            model="text-embedding-3-small"
+            model=EMBEDDING_MODEL,
         )
-        embedding = response.data[0].embedding
-        return embedding
+        return response.data[0].embedding
