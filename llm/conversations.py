@@ -28,7 +28,7 @@ class Conversation:
             response_format=response_format,
         )
         parsed = response.choices[0].message.parsed
-        self.messages.append({"role": "assistant", "content": str(parsed)})
+        self.messages.append({"role": "assistant", "content": parsed.model_dump_json()})
         return parsed
 
     def reset(self):

@@ -6,11 +6,10 @@ from models.tickets import Ticket
 
 class EmailServices:
     def __init__(self, llm_client: LLMClient | None = None):
-        self.conversation = Conversation(
-            client=(llm_client or LLMClient()).client,
-            system_prompt=EMAIL_CLASSIFICATION_PROMPT,
-        )
+        self._client = (llm_client or LLMClient()).client
 
     def classify_email(self, email_content: str) -> Ticket:
         """Classify the email content and return a structured ticket."""
-        return self.conversation.chat_structured(email_content, response_format=Ticket)
+        # A fresh Conversation per call keeps each classification stateless.
+        conversation = Conversation(client=self._client, system_prompt=EMAIL_CLASSIFICATION_PROMPT)
+        return conversation.chat_structured(email_content, response_format=Ticket)
