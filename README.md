@@ -1,4 +1,4 @@
-# AI Playground
+# From Software Engineer to AI Systems Engineer
 
 A collection of hands-on experiments exploring practical LLM patterns in Python — structured output, multi-turn conversations, semantic search, and embeddings — all powered by the [GitHub Models API](https://github.com/marketplace/models) using your existing GitHub Copilot subscription.
 
