@@ -1,4 +1,4 @@
-from models.server import MCPServer
+from .models.server import MCPServer
 
 class MCPClient:
     def __init__(self):
@@ -15,6 +15,6 @@ class MCPClient:
 
     def call_tool(self, name: str, arguments: dict):
         for server in self.server:
-            if name in [t['function']['name'] for t in server.list_tools()]:
+            if name in server.tools:
                 return server.call_tool(name, arguments)
-        return None
+        raise ValueError(f"Tool '{name}' not found")

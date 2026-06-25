@@ -1,9 +1,10 @@
-from models.tools import Tool
+from ..models.tools import Tool
 
 class Additor(Tool):
     name: str = "add"
     description: str = "Adds two numbers together"
 
+    # This schema is currently derived manually, but in the future it will be derived from the function signature and docstring
     def schema(self):
         return {
             "type": "function",

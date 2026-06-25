@@ -1,6 +1,6 @@
-from models.server import MCPServer
-from calculator_mcp_server.additor_tool import Additor
-from calculator_mcp_server.subtractor_tool import Subtractor
+from ..models.server import MCPServer
+from .additor_tool import Additor
+from .subtractor_tool import Subtractor
 
 class CalculatorMCPServer(MCPServer):
     def __init__(self):

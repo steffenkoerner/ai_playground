@@ -1,9 +1,10 @@
-from models.tools import Tool
+from ..models.tools import Tool
 
 class Subtractor(Tool):
     name: str = "subtract"
     description: str = "Subtracts two numbers"
 
+     # This schema is currently derived manually, but in the future it will be derived from the function signature and docstring
     def schema(self):
         return {
             "type": "function",

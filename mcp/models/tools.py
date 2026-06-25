@@ -1,9 +1,9 @@
 
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from pydantic import BaseModel
 
 
-class Tool(BaseModel):
+class Tool(BaseModel, ABC):
     name: str
     description: str
 

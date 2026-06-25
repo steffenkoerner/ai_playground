@@ -1,4 +1,4 @@
-from models.tools import Tool
+from .tools import Tool
 
 class MCPServer:
     def __init__(self):
