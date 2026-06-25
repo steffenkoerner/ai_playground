@@ -31,10 +31,6 @@ Query: "Reset password"
 ### 3. MCP
 A small implementation of a mini mcp version that shows the basic concepts of mcp and how it helps llm to use tools. It especially should show that not the llm itself is not related to mcp. The mcp protocol is used by the application around the llm to provide the tools and does the tool calling
 
-```
-python -m mcp.app
-```
-
 ---
 
 ## Setup
@@ -63,11 +59,14 @@ export GITHUB_TOKEN="ghp_your_token_here"
 ### 4. Run
 
 ```bash
-# Semantic similarity search (default)
+# Semantic similarity search
 python app.py
 
-# Email classification — uncomment classify_email() in app.py
+# Email classification
 python app.py
+
+# mcp example
+python -m mcp.app
 ```
 
 
