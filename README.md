@@ -28,8 +28,16 @@ Query: "Reset password"
 ...
 ```
 
-### 3. MCP
-A small implementation of a mini mcp version that shows the basic concepts of mcp and how it helps llm to use tools. It especially should show that not the llm itself is not related to mcp. The mcp protocol is used by the application around the llm to provide the tools and does the tool calling
+### 3. MCP (Model Context Protocol)
+A minimal MCP implementation demonstrating how tools are exposed to an LLM without the LLM knowing anything about the protocol itself. The MCP layer handles tool registration, schema generation, and dispatching — the LLM just sees a list of callable functions and decides which one to invoke.
+
+```
+"How is the weather in Munich?"
+        ↓  MCP client resolves tools from registered servers
+        ↓  gpt-4o-mini selects and calls get_weather(city="Munich")
+        ↓  WeatherMCPServer executes the tool and returns the result
+"The weather in Munich is 22°C."
+```
 
 ---
 
@@ -59,10 +67,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 ### 4. Run
 
 ```bash
-# Semantic similarity search
-python app.py
-
-# Email classification
+# Semantic similarity search and email classification
 python app.py
 
 # mcp example
@@ -77,6 +82,7 @@ python -m mcp.app
 |---|---|
 | `gpt-4o-mini` | Email classification (chat + structured output) |
 | `text-embedding-3-small` | Generating text embeddings for similarity search |
+| `gpt-4o-mini` | MCP tool-calling agent |
 
 Both are available on [GitHub Models](https://github.com/marketplace/models) at no extra cost with a GitHub Copilot subscription.
 
