@@ -1,1 +1,1 @@
-from agent_loop.mcp.servers.weather_mcp_server.weather_tool import WeatherTool
+from .weather_tool import WeatherTool

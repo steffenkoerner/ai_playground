@@ -1,9 +1,9 @@
 
-from agent_loop.agent.conversations import Conversation
-from agent_loop.mcp.client import MCPClient
-from agent_loop.llm.client import LLMClient
-from agent_loop.mcp.servers.calculator_mcp_server.mcp_server import CalculatorMCPServer
-from agent_loop.mcp.servers.weather_mcp_server.mcp_server import WeatherMCPServer
+from .conversations import Conversation
+from ..mcp.client import MCPClient
+from ..llm.client import LLMClient
+from ..mcp.servers.calculator_mcp_server.mcp_server import CalculatorMCPServer
+from ..mcp.servers.weather_mcp_server.mcp_server import WeatherMCPServer
 import json
 
 class Agent:

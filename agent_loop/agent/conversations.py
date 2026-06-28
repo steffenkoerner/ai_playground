@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from openai import OpenAI
-from agent_loop.llm.config import DEFAULT_MODEL
+from ..llm.config import DEFAULT_MODEL
 import json
 
 

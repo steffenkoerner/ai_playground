@@ -1,6 +1,4 @@
-from agent_loop.agent import Agent
-from agent_loop.mcp.servers.calculator_mcp_server import Additor
-from agent_loop.mcp.servers.weather_mcp_server import WeatherTool
+from .agent.agent import Agent
 
 def main():
     agent = Agent(name="Agent", model="gpt-4o-mini")

@@ -1,5 +1,5 @@
 from openai import OpenAI
-from agent_loop.llm.config import GITHUB_TOKEN, BASE_URL
+from .config import GITHUB_TOKEN, BASE_URL
 
 
 class LLMClient:
