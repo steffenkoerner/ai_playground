@@ -1,6 +1,6 @@
 from openai import OpenAI
 from ...llm.config import GITHUB_TOKEN, BASE_URL
-from ..models.llm_response import LLMResponse
+from ..models.llm_response import LLMResponse, ChatRequest
 
 
 class LLMClient:
@@ -10,12 +10,12 @@ class LLMClient:
         self.client = OpenAI(base_url=BASE_URL, api_key=GITHUB_TOKEN)
         self.model = model
 
-    def chat_with_tools(self, messages: list[dict], tools: list, model: str) -> LLMResponse:
+    def chat_with_tools(self, request: ChatRequest) -> LLMResponse:
 
         response = self.client.chat.completions.create(
-            model=model,
-            messages=messages,
-            tools=tools,
+            model=request.model,
+            messages=request.messages,
+            tools=request.tools,
             tool_choice="auto",
         )
         llm_response = LLMResponse(

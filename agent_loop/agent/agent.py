@@ -2,6 +2,7 @@
 from .conversations import Conversation
 from ..mcp.client import MCPClient
 from .llm.client import LLMClient
+from .models.llm_response import ChatRequest
 import json
 
 class Agent:
@@ -17,7 +18,9 @@ class Agent:
         self.conversation.add_message("user", prompt)
 
         while True:
-            response = self.llm.chat_with_tools(self.conversation.messages, tools=tools, model=self.model)
+
+            request = ChatRequest(messages=self.conversation.messages, tools=tools, model=self.model)
+            response = self.llm.chat_with_tools(request)
 
             if response.tool_calls:
                 self.conversation.messages.append(response.message)
