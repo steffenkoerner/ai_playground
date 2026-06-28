@@ -7,7 +7,9 @@ A collection of hands-on experiments exploring practical LLM patterns in Python 
 
 ## Use Cases
 
-### 1. Email Classification
+### 1. LLM Usage
+
+## 1.1. Email Classification
 Classify customer emails into structured support tickets using LLM structured output.  
 The model reads a raw email and returns a validated Pydantic object — no fragile JSON parsing, no prompt-engineering the output format.
 
@@ -17,7 +19,7 @@ The model reads a raw email and returns a validated Pydantic object — no fragi
 Ticket(summary="Damaged order...", priority=HIGH, sentiment=NEGATIVE, suggested_reply="...")
 ```
 
-### 2. Semantic Similarity Search
+### 1.2. Semantic Similarity Search (Embeddings)
 Find the most relevant document for a query using text embeddings and cosine similarity — a minimal vector search implementation from scratch.
 
 ```
@@ -28,7 +30,7 @@ Query: "Reset password"
 ...
 ```
 
-### 3. MCP (Model Context Protocol)
+### 2. MCP (Model Context Protocol)
 A minimal MCP implementation demonstrating how tools are exposed to an LLM without the LLM knowing anything about the protocol itself. The MCP layer handles tool registration, schema generation, and dispatching — the LLM just sees a list of callable functions and decides which one to invoke.
 
 ```
@@ -38,6 +40,8 @@ A minimal MCP implementation demonstrating how tools are exposed to an LLM witho
         ↓  WeatherMCPServer executes the tool and returns the result
 "The weather in Munich is 22°C."
 ```
+
+### 3. Agent Loop
 
 ---
 
@@ -68,10 +72,13 @@ export GITHUB_TOKEN="ghp_your_token_here"
 
 ```bash
 # Semantic similarity search and email classification
-python app.py
+python -m llm_example.app
 
 # mcp example
 python -m mcp.app
+
+# agent loop
+python -m agent_loop.app
 ```
 
 
