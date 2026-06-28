@@ -1,10 +1,10 @@
-from ..models.tools import Tool
+from ...protocols.tools import Tool
 
-class Subtractor(Tool):
-    name: str = "subtract"
-    description: str = "Subtracts two numbers"
+class Additor(Tool):
+    name: str = "add"
+    description: str = "Adds two numbers together"
 
-     # This schema is currently derived manually, but in the future it will be derived from the function signature and docstring
+    # This schema is currently derived manually, but in the future it will be derived from the function signature and docstring
     def schema(self):
         return {
             "type": "function",
@@ -23,4 +23,4 @@ class Subtractor(Tool):
         }
 
     def execute(self, arguments):
-        return arguments["first_number"] - arguments["second_number"]
+        return arguments["first_number"] + arguments["second_number"]

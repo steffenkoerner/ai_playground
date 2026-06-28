@@ -1,4 +1,4 @@
-from ..models.server import MCPServer
+from ...protocols.server import MCPServer
 from .weather_tool import WeatherTool
 
 class WeatherMCPServer(MCPServer):

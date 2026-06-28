@@ -1,4 +1,4 @@
-from ..models.tools import Tool
+from ...protocols.tools import Tool
 class WeatherTool(Tool):
     name: str = "get_weather"
     description: str = "Returns weather for a city"

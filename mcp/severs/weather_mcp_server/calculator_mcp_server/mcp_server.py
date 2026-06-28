@@ -1,4 +1,4 @@
-from ..models.server import MCPServer
+from ....protocols.server import MCPServer
 from .additor_tool import Additor
 from .subtractor_tool import Subtractor
 
