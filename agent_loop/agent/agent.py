@@ -7,14 +7,12 @@ from ..mcp.servers.weather_mcp_server.mcp_server import WeatherMCPServer
 import json
 
 class Agent:
-    def __init__(self, name, model):
+    def __init__(self, name, llm_client: LLMClient, mcp_client: MCPClient):
         self.name = name
-        self.model = model
-        llm = LLMClient()
+        llm = llm_client
         self.conversation = Conversation(llm.client, f"You are a helpful assistant named {name}.")
-        self.mcp = MCPClient()
-        self.mcp.register(WeatherMCPServer())
-        self.mcp.register(CalculatorMCPServer())
+        self.mcp = mcp_client
+
 
     def run(self, prompt):
         tools = self.mcp.list_tools()
