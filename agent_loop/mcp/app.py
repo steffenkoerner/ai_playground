@@ -1,6 +1,6 @@
-from mcp.severs.weather_mcp_server.calculator_mcp_server.mcp_server import CalculatorMCPServer
-from mcp.severs.weather_mcp_server.mcp_server import WeatherMCPServer
-from mcp.client import MCPClient
+from mcp_example.mcp.severs.weather_mcp_server.calculator_mcp_server.mcp_server import CalculatorMCPServer
+from mcp_example.mcp.severs.weather_mcp_server.mcp_server import WeatherMCPServer
+from mcp_example.mcp.client import MCPClient
 from llm.client import LLMClient
 from llm.conversations import Conversation
 

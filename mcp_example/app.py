@@ -1,8 +1,8 @@
-from mcp.severs.weather_mcp_server.calculator_mcp_server.mcp_server import CalculatorMCPServer
-from mcp.severs.weather_mcp_server.mcp_server import WeatherMCPServer
-from mcp.client import MCPClient
-from llm.client import LLMClient
-from llm.conversations import Conversation
+from mcp_example.mcp.severs.weather_mcp_server.calculator_mcp_server.mcp_server import CalculatorMCPServer
+from mcp_example.mcp.severs.weather_mcp_server.mcp_server import WeatherMCPServer
+from mcp_example.mcp.client import MCPClient
+from mcp_example.llm.client import LLMClient
+from mcp_example.llm.conversations import Conversation
 
 def main(user_message: str):
     calculator_server = CalculatorMCPServer()

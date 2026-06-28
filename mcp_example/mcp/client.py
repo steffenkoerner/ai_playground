@@ -1,4 +1,3 @@
-from .models.server import MCPServer
 
 class MCPClient:
     def __init__(self):
