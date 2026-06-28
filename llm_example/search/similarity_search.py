@@ -1,5 +1,5 @@
-from services.embedding_services import EmbeddingServices
-from search.cosine import cosine_similarity
+from llm_example.services.embedding_services import EmbeddingServices
+from llm_example.search.cosine import cosine_similarity
 
 
 class SimilaritySearch:

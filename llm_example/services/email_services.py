@@ -1,7 +1,7 @@
-from llm.client import LLMClient
-from llm.conversations import Conversation
-from llm.prompts import EMAIL_CLASSIFICATION_PROMPT
-from models.tickets import Ticket
+from llm_example.llm.client import LLMClient
+from llm_example.llm.conversations import Conversation
+from llm_example.llm.prompts import EMAIL_CLASSIFICATION_PROMPT
+from llm_example.models.tickets import Ticket
 
 
 class EmailServices:

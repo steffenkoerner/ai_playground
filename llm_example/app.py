@@ -1,6 +1,6 @@
-from services.email_services import EmailServices
-from search.similarity_search import SimilaritySearch
-from examples.semantic_search import documents
+from llm_example.services.email_services import EmailServices
+from llm_example.search.similarity_search import SimilaritySearch
+from llm_example.example_documents.semantic_search import documents
 
 
 def classify_email():
@@ -27,6 +27,9 @@ def similarity_search():
 
 if __name__ == "__main__":
     classify_email()
+    print()
+    print()
+    print("Similarity Search Results:")
     similarity_search()
 
 

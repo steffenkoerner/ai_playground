@@ -1,5 +1,5 @@
-from llm.client import LLMClient
-from config import EMBEDDING_MODEL
+from llm_example.llm.client import LLMClient
+from llm_example.config import EMBEDDING_MODEL
 
 
 class EmbeddingServices:
