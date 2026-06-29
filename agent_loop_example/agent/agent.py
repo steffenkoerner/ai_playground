@@ -17,7 +17,7 @@ class Agent:
 
         while True:
 
-            request = ChatRequest(messages=self.conversation.messages, tools=tools, model=self.model)
+            request = ChatRequest(messages=self.conversation.get_messages(), tools=tools, model=self.model)
             response = self.llm.chat_with_tools(request)
 
             if response.finish_reason == "tool_calls":
