@@ -1,6 +1,6 @@
 from openai import OpenAI
 from ...llm.config import GITHUB_TOKEN, BASE_URL
-from ..models.llm_response import LLMResponse, ChatRequest
+from ..models.llm_response import ChatResponse, ChatRequest, Message
 
 
 class LLMClient:
@@ -10,7 +10,7 @@ class LLMClient:
         self.client = OpenAI(base_url=BASE_URL, api_key=GITHUB_TOKEN)
         self.model = model
 
-    def chat_with_tools(self, request: ChatRequest) -> LLMResponse:
+    def chat_with_tools(self, request: ChatRequest) -> ChatResponse:
 
         response = self.client.chat.completions.create(
             model=request.model,
@@ -18,34 +18,17 @@ class LLMClient:
             tools=request.tools,
             tool_choice="auto",
         )
-        llm_response = LLMResponse(
+        llm_response = ChatResponse(
             finish_reason=response.choices[0].finish_reason,
-            message=response.choices[0].message,
-            tool_calls=response.choices[0].message.tool_calls if response.choices[0].finish_reason == "tool_calls" else [],
+            message=Message(
+                role=response.choices[0].message.role,
+                content=response.choices[0].message.content,
+                tool_call_id=getattr(response.choices[0].message, "tool_call_id", None),
+                tool_calls=response.choices[0].message.tool_calls or [],
+            ),
+            tool_calls=response.choices[0].message.tool_calls or [],
         )
 
         return llm_response
-    
-    # def chat(self, user_message: str, model: str = DEFAULT_MODEL) -> str:
-    #     self.messages.append({"role": "user", "content": user_message})
-    #     response = self.client.chat.completions.create(
-    #         model=model,
-    #         messages=self.messages,
-    #     )
-    #     reply = response.choices[0].message.content
-    #     self.messages.append({"role": "assistant", "content": reply})
-    #     return reply
-
-    # def chat_structured(self, user_message: str, response_format: type[BaseModel], model: str = DEFAULT_MODEL) -> BaseModel:
-    #     self.messages.append({"role": "user", "content": user_message})
-    #     response = self.client.beta.chat.completions.parse(
-    #         model=model,
-    #         messages=self.messages,
-    #         response_format=response_format,
-    #     )
-    #     parsed = response.choices[0].message.parsed
-    #     self.messages.append({"role": "assistant", "content": parsed.model_dump_json()})
-    #     return parsed
-    
 
 

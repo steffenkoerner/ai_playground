@@ -4,12 +4,17 @@ from enum import Enum
 from typing import Any
 from ...llm.config import DEFAULT_MODEL
 
-
-class LLMResponse(BaseModel):
+@dataclass
+class Message:
+    role: str
+    content: str | None
+    tool_call_id: str | None = None
+    tool_calls: list[Any] | None = None
+    
+class ChatResponse  (BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-
     finish_reason: str
-    message: Any
+    message: Message
     tool_calls: list[Any]
 
 
@@ -27,12 +32,7 @@ class ToolCall:
     arguments: dict
 
 
-@dataclass
-class Message:
-    role: str
-    content: str | None
-    tool_call_id: str | None = None
-    tool_calls: list[Any] | None = None
+
 
 
 @dataclass

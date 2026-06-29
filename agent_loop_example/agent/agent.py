@@ -20,9 +20,9 @@ class Agent:
             request = ChatRequest(messages=self.conversation.messages, tools=tools, model=self.model)
             response = self.llm.chat_with_tools(request)
 
-            if response.tool_calls:
-                self.conversation.add_message(Message(role="assistant", content=response.message.content, tool_calls=response.message.tool_calls))
-                for tool_call in response.tool_calls:
+            if response.finish_reason == "tool_calls":
+                self.conversation.add_message(response.message)
+                for tool_call in response.message.tool_calls:
                     result = self.mcp.call_tool(tool_call)
                     self.conversation.add_message(Message(role="tool", content=str(result), tool_call_id=tool_call.id))
             else:
