@@ -25,8 +25,7 @@ class Agent:
             if response.tool_calls:
                 self.conversation.messages.append(response.message)
                 for tool_call in response.tool_calls:
-                    arguments = json.loads(tool_call.function.arguments)
-                    result = self.mcp.call_tool(tool_call.function.name, arguments)
+                    result = self.mcp.call_tool(tool_call)
                     self.conversation.messages.append({
                         "role": "tool",
                         "tool_call_id": tool_call.id,
