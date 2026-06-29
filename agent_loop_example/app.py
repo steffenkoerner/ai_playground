@@ -1,5 +1,5 @@
 from .agent.agent import Agent
-from .agent.llm.client import LLMClient
+from .llm.client import LLMClient
 from .mcp.client import MCPClient
 from .mcp.servers.calculator_mcp_server.mcp_server import CalculatorMCPServer
 from .mcp.servers.weather_mcp_server.mcp_server import WeatherMCPServer

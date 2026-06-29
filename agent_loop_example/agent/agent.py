@@ -1,7 +1,7 @@
 
 from .conversations import Conversation
 from ..mcp.client import MCPClient
-from .llm.client import LLMClient
+from ..llm.client import LLMClient
 from .models.llm_response import ChatRequest, Message
 class Agent:
     def __init__(self, name, llm_client: LLMClient, mcp_client: MCPClient, model: str = "gpt-4o-mini"):
@@ -23,7 +23,7 @@ class Agent:
             if response.finish_reason == "tool_calls":
                 self.conversation.add_message(response.message)
                 for tool_call in response.message.tool_calls:
-                    result = self.mcp.call_tool(tool_call)
+                    result = self.mcp.execute(tool_call)
                     self.conversation.add_message(Message(role="tool", content=str(result), tool_call_id=tool_call.id))
             else:
                 self.conversation.add_message(Message(role="assistant", content=response.message.content))

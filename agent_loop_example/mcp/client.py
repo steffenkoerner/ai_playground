@@ -14,7 +14,7 @@ class MCPClient:
             tools.extend(server.list_tools())
         return tools
 
-    def call_tool(self, tool_call: ToolCall):
+    def execute(self, tool_call: ToolCall):
         name = tool_call.function.name
         arguments = json.loads(tool_call.function.arguments)
         for server in self.server:
