@@ -10,7 +10,7 @@ class LLMClient:
         self.client = OpenAI(base_url=BASE_URL, api_key=GITHUB_TOKEN)
         self.model = model
 
-    def chat_with_tools(self, request: ChatRequest) -> ChatResponse:
+    def chat(self, request: ChatRequest) -> ChatResponse:
 
         response = self.client.chat.completions.create(
             model=request.model,
