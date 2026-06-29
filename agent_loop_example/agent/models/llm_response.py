@@ -30,9 +30,9 @@ class ToolCall:
 @dataclass
 class Message:
     role: str
-    content: str
+    content: str | None
     tool_call_id: str | None = None
-    tool_calls: list[ToolCall] | None = None
+    tool_calls: list[Any] | None = None
 
 
 @dataclass

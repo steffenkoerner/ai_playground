@@ -2,9 +2,7 @@
 from .conversations import Conversation
 from ..mcp.client import MCPClient
 from .llm.client import LLMClient
-from .models.llm_response import ChatRequest
-import json
-
+from .models.llm_response import ChatRequest, Message
 class Agent:
     def __init__(self, name, llm_client: LLMClient, mcp_client: MCPClient, model: str = "gpt-4o-mini"):
         self.name = name
@@ -15,7 +13,7 @@ class Agent:
 
     def run(self, prompt):
         tools = self.mcp.list_tools()
-        self.conversation.add_message("user", prompt)
+        self.conversation.add_message(Message(role="user", content=prompt))
 
         while True:
 
@@ -23,15 +21,11 @@ class Agent:
             response = self.llm.chat_with_tools(request)
 
             if response.tool_calls:
-                self.conversation.messages.append(response.message)
+                self.conversation.add_message(Message(role="assistant", content=response.message.content, tool_calls=response.message.tool_calls))
                 for tool_call in response.tool_calls:
                     result = self.mcp.call_tool(tool_call)
-                    self.conversation.messages.append({
-                        "role": "tool",
-                        "tool_call_id": tool_call.id,
-                        "content": str(result),
-                    })
+                    self.conversation.add_message(Message(role="tool", content=str(result), tool_call_id=tool_call.id))
             else:
-                self.conversation.add_message("assistant", response.message.content)
+                self.conversation.add_message(Message(role="assistant", content=response.message.content))
                 return response.message.content
 
