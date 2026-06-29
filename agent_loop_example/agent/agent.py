@@ -2,7 +2,7 @@
 from .conversations import Conversation
 from ..mcp.client import MCPClient
 from ..llm.client import LLMClient
-from .models.llm_response import ChatRequest, Message
+from ..llm.models import ChatRequest, Message
 class Agent:
     def __init__(self, name, llm_client: LLMClient, mcp_client: MCPClient, model: str = "gpt-4o-mini"):
         self.name = name

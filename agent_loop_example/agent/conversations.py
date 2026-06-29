@@ -1,4 +1,4 @@
-from .models.llm_response import Message
+from ..llm.models import Message
 class Conversation:
     """Manages a multi-turn chat session with an LLM."""
 

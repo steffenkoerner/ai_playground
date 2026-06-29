@@ -1,6 +1,6 @@
 from openai import OpenAI
 from .config import GITHUB_TOKEN, BASE_URL
-from ..agent.models.llm_response import ChatResponse, ChatRequest, Message
+from .models import ChatResponse, ChatRequest, Message
 
 
 class LLMClient:
