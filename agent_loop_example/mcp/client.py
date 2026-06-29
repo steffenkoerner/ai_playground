@@ -1,4 +1,4 @@
-from agent_loop.agent.models.llm_response import ToolCall
+from agent_loop_example.agent.models.llm_response import ToolCall
 import json
 
 class MCPClient:

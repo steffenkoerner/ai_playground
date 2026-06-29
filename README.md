@@ -7,7 +7,7 @@ A collection of hands-on experiments exploring practical LLM patterns in Python 
 
 ## Use Cases
 
-### 1. LLM Usage
+### 1. LLM Example
 
 ## 1.1. Email Classification
 Classify customer emails into structured support tickets using LLM structured output.  
@@ -30,7 +30,7 @@ Query: "Reset password"
 ...
 ```
 
-### 2. MCP (Model Context Protocol)
+### 2. MCP Example (Model Context Protocol)
 A minimal MCP implementation demonstrating how tools are exposed to an LLM without the LLM knowing anything about the protocol itself. The MCP layer handles tool registration, schema generation, and dispatching — the LLM just sees a list of callable functions and decides which one to invoke.
 
 ```
@@ -41,7 +41,18 @@ A minimal MCP implementation demonstrating how tools are exposed to an LLM witho
 "The weather in Munich is 22°C."
 ```
 
-### 3. Agent Loop
+### 3. Agent Loop Example
+A minimal agent loop showing how an LLM autonomously reasons and acts over multiple steps. The agent sends a prompt to the LLM, executes any requested tool calls via the MCP layer, feeds the results back into the conversation, and repeats — until the LLM produces a final answer with no further tool calls.
+
+```
+"How is the weather in Munich?"
+        ↓  Agent sends prompt + available tools to the LLM
+        ↓  LLM decides to call get_weather(city="Munich")
+        ↓  MCPClient dispatches to WeatherMCPServer, returns result
+        ↓  Agent feeds tool result back into the conversation
+        ↓  LLM produces a final answer (no more tool calls)
+"The weather in Munich is currently 22°C."
+```
 
 ---
 
@@ -75,10 +86,10 @@ export GITHUB_TOKEN="ghp_your_token_here"
 python -m llm_example.app
 
 # mcp example
-python -m mcp.app
+python -m mcp_example.app
 
 # agent loop
-python -m agent_loop.app
+python -m agent_loop_example.app
 ```
 
 
